@@ -1,4 +1,5 @@
 import english from './en';
+import chinese from './zh';
 import french from './fr';
 import finnish from './fi';
 import swedish from './sv';
@@ -19,4 +20,5 @@ export {
   swedish,
   vietnam,
   Translation,
+  chinese,
 };

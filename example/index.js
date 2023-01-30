@@ -1,3 +1,12 @@
+/*
+ * @Author: shitao
+ * @Date: 2023-01-30 14:55:23
+ * @LastEditTime: 2023-01-30 15:05:20
+ * @LastEditors: shitao
+ * @Description: 
+ * @FilePath: \mapbox-gl-export\example\index.js
+ * 无锡四维时空信息科技有限公司
+ */
 import mapboxgl from 'mapbox-gl';
 import { MapboxExportControl, Size, PageOrientation, Format, DPI} from '../lib/index';
 import '../css/styles.css';
@@ -20,6 +29,6 @@ import '../css/styles.css';
         DPI: DPI[96],
         Crosshair: true,
         PrintableArea: true,
-        Local: 'en'
+        Local: 'zh'
     }), 'top-right');
 })()

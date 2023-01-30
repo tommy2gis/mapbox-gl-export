@@ -1,7 +1,7 @@
 import { IControl, Map as MapboxMap } from 'mapbox-gl';
 import CrosshairManager from './crosshair-manager';
 import PrintableAreaManager from './printable-area-manager';
-import { english, finnish, french, swedish, Translation, vietnam } from './local';
+import { english,chinese, finnish, french, swedish, Translation, vietnam } from './local';
 import MapGenerator, {
   Size, Format, PageOrientation, DPI, Unit,
 } from './map-generator';
@@ -69,7 +69,7 @@ export default class MapboxExportControl implements IControl {
       case 'vi':
         return vietnam;
       default:
-        return english;
+        return chinese;
     }
   }
 
@@ -98,22 +98,22 @@ export default class MapboxExportControl implements IControl {
     table.className = 'print-table';
 
     const tr1 = this.createSelection(
-      Size, this.getTranslation().PageSize, 'page-size', this.options.PageSize, (data, key) => JSON.stringify(data[key]),
+      Size, this.getTranslation().PageSize, 'page-size', this.options.PageSize, (data, key) => JSON.stringify(data[key]),false
     );
     table.appendChild(tr1);
 
     const tr2 = this.createSelection(
-      PageOrientation, this.getTranslation().PageOrientation, 'page-orientaiton', this.options.PageOrientation, (data, key) => data[key],
+      PageOrientation, this.getTranslation().PageOrientation, 'page-orientaiton', this.options.PageOrientation, (data, key) => data[key],true
     );
     table.appendChild(tr2);
 
     const tr3 = this.createSelection(
-      Format, this.getTranslation().Format, 'format-type', this.options.Format, (data, key) => data[key],
+      Format, this.getTranslation().Format, 'format-type', this.options.Format, (data, key) => data[key],false
     );
     table.appendChild(tr3);
 
     const tr4 = this.createSelection(
-      DPI, this.getTranslation().DPI, 'dpi-type', this.options.DPI, (data, key) => data[key],
+      DPI, this.getTranslation().DPI, 'dpi-type', this.options.DPI, (data, key) => data[key],false
     );
     table.appendChild(tr4);
 
@@ -121,7 +121,7 @@ export default class MapboxExportControl implements IControl {
 
     const generateButton = document.createElement('button');
     generateButton.type = 'button';
-    generateButton.textContent = 'Generate';
+    generateButton.textContent = this.getTranslation().Generate;
     generateButton.classList.add('generate-button');
     generateButton.addEventListener('click', () => {
       const pageSize: HTMLSelectElement = <HTMLSelectElement>document.getElementById('mapbox-gl-export-page-size');
@@ -154,6 +154,7 @@ export default class MapboxExportControl implements IControl {
     type: string,
     defaultValue: any,
     converter: Function,
+    showlabel:boolean,
   ): HTMLElement {
     const label = document.createElement('label');
     label.textContent = title;
@@ -164,7 +165,11 @@ export default class MapboxExportControl implements IControl {
     Object.keys(data).forEach((key) => {
       const optionLayout = document.createElement('option');
       optionLayout.setAttribute('value', converter(data, key));
-      optionLayout.appendChild(document.createTextNode(key));
+      optionLayout.appendChild(
+        showlabel
+          ? document.createTextNode(data[key])
+          : document.createTextNode(key)
+      );
       optionLayout.setAttribute('name', type);
       if (defaultValue === data[key]) {
         optionLayout.selected = true;

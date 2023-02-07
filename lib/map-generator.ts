@@ -29,7 +29,7 @@
 
 import { jsPDF } from 'jspdf';
 import { saveAs } from 'file-saver';
-import { accessToken, Map as MapboxMap } from 'mapbox-gl';
+import { accessToken, Map as MapboxMap } from '@tommy2gis/swsk-mapbox-gl';
 import 'js-loading-overlay';
 import { fabric } from 'fabric';
 
@@ -111,7 +111,7 @@ export default class MapGenerator {
   constructor(
     map:MapboxMap,
     size: Size = Size.A4,
-    dpi: number = 300,
+    dpi: number = 96,
     format:string = Format.PNG.toString(),
     unit: Unit = Unit.mm,
     accesstoken?: string,
@@ -186,6 +186,7 @@ export default class MapGenerator {
       zoom: this.map.getZoom(),
       bearing: this.map.getBearing(),
       pitch: this.map.getPitch(),
+      crs:'EPSG:4490',
       interactive: false,
       preserveDrawingBuffer: true,
       fadeDuration: 0,
@@ -193,6 +194,8 @@ export default class MapGenerator {
       // hack to read transfrom request callback function
       transformRequest: (this.map as any)._requestManager._transformRequestFn,
     });
+
+    // console.info("crs",this.map.crs)
 
     // @ts-ignore
     const images = (this.map.style.imageManager || {}).images || [];

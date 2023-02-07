@@ -1,4 +1,4 @@
-import { IControl, Map as MapboxMap } from 'mapbox-gl';
+import { IControl, Map as MapboxMap } from '@tommy2gis/swsk-mapbox-gl';
 import CrosshairManager from './crosshair-manager';
 import PrintableAreaManager from './printable-area-manager';
 import { english,chinese, finnish, french, swedish, Translation, vietnam } from './local';

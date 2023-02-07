@@ -37,6 +37,6 @@ module.exports = {
         ],
     },
     externals: {
-        'mapbox-gl': 'mapboxgl'
+        '@tommy2gis/swsk-mapbox-gl': 'mapboxgl'
     }
 };

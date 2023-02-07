@@ -53,7 +53,7 @@ See [demo](https://watergis.github.io/mapbox-gl-export/#12/-1.08551/35.87063).
 ```ts
 import { MapboxExportControl, Size, PageOrientation, Format, DPI} from "@watergis/mapbox-gl-export";
 import '@watergis/mapbox-gl-export/css/styles.css';
-import mapboxgl from 'mapbox-gl';
+import mapboxgl from '@tommy2gis/swsk-mapbox-gl';
 
 const map = new mapboxgl.Map();
 // create control with default options

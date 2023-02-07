@@ -1,4 +1,4 @@
-import { Map as MapboxMap } from 'mapbox-gl';
+import { Map as MapboxMap } from '@tommy2gis/swsk-mapbox-gl';
 import {
   Unit,
 } from './map-generator';

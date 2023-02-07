@@ -1,4 +1,4 @@
-import { Map as MapboxMap } from 'mapbox-gl';
+import { Map as MapboxMap } from '@tommy2gis/swsk-mapbox-gl';
 
 export default class CrosshairManager {
     private map: MapboxMap | undefined;
